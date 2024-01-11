@@ -1,30 +1,31 @@
-import {Outlet, Navigate, Route, Routes, useLocation} from "react-router-dom";
-import {userSelector} from "react-redux";
-import {Home} from "./pages"; 
-
+import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Home, Profile, Register, Login, ResetPassword } from "./pages";
 
 function Layout() {
-  const user = userSelector (state=> state.user);
-  const location = useLocation()
-
+  const {user} = useSelector((state) => state.user);
+  const location = useLocation();
+  //console.log(user);
   return user?.token ? (
     <Outlet />
   ) : (
-    <Navigate to='/login' state={{from: location}} replace />
+    <Navigate to="/login" state={{ from: location }} replace />
   );
 }
+
 function App() {
+  const { theme } = useSelector((state) => state.theme);
+  //console.log(theme) 
   return (
-    <div className='w-full min-h-[100vh]'>
+    <div data-theme={theme} className="w-full min-h-[100vh]">
       <Routes>
         <Route element={<Layout />}>
-          <Route path='/' element={<Home />} />
-          <Route path='/Profile/:id?' element={<Profile/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/profile/:id?" element={<Profile />} />
         </Route>
-
-        <Route path='/register' element={<Register/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </div>
   );

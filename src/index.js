@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {BrowserRouter} from "react-router-dom";
-import {provider, provoder} from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux"; // Fix the import statement
 import './index.css';
 import App from './App';
-import { store } from  "./Redux/Store";
+import { store } from "./Redux/Store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,8 +14,5 @@ root.render(
         <App />
       </BrowserRouter>
     </Provider>
-    
   </React.StrictMode>
 );
-
-
